@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { AuthLayout } from "../auth/layouts/AuthLayout";
 import { Login } from "../auth/views/Login";
 import { DoctorLayout } from "../doctor/layout/DoctorLayout";
+import { DoctorHome } from "../doctor/views/DoctorHome";
 export const appRouter = createBrowserRouter([
     {
         path: "/auth",
@@ -24,15 +25,15 @@ export const appRouter = createBrowserRouter([
         children: [
             {
                 path: "home",
-                element: <h1 className="bg-yellow-100">Home</h1>
+                element: <h1>home</h1>
             },
             {
                 path: "patients",
                 element: <h1 className="bg-yellow-100">Patients</h1>
             },
             {
-                path: "appointments",
-                element: <h1 className="bg-yellow-100">Appointments</h1>
+                path: "citas",
+                element: <DoctorHome />
             },
             {
                 path: "profile",
