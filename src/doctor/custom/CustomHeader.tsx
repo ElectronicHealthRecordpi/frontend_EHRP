@@ -1,5 +1,6 @@
 import logo from '@/assets/logo/sedes.png'
 import { NavLink, useNavigate } from 'react-router'
+import { useAuth } from '@/auth/context/AuthContext'
 import {
     Avatar,
     AvatarBadge,
@@ -26,10 +27,12 @@ const navLinks = [
 
 export const CustomHeader = () => {
     const navigate = useNavigate()
+    const { logout, userName } = useAuth()
     const [mobileOpen, setMobileOpen] = useState(false)
 
     const handleLogout = () => {
-        navigate('/auth/login')
+        logout()
+        navigate('/auth/login', { replace: true })
     }
 
     return (
@@ -74,7 +77,7 @@ export const CustomHeader = () => {
                         <DropdownMenuTrigger asChild>
                             <button className="flex items-center gap-2.5 rounded-lg px-2 py-1.5 outline-none hover:bg-gray-50 transition-colors focus-visible:ring-1 focus-visible:ring-emerald-500 cursor-pointer">
                                 <div className="hidden md:flex flex-col items-end leading-tight">
-                                    <span className="text-sm font-medium text-gray-900">Dr. Pepe Mujica</span>
+                                    <span className="text-sm font-medium text-gray-900">{userName ?? 'Usuario'}</span>
                                     <span className="text-xs text-gray-400">Médico General</span>
                                 </div>
                                 <Avatar size="default">
